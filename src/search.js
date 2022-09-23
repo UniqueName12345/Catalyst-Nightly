@@ -11,9 +11,9 @@ searchbar.addEventListener("input", async() => {
         shouldAutocomplete(searchbar.value) &&
         JSON.parse(window.localStorage.getItem("preferences")).autocomplete
     ) {
-        // This is for duckduckgo only, in the future, this may be something else, but I think DDG is fine for now.
+        // This is for searx only, in the future, this may be something else, but I think searx is fine for now.
         const autoCompleteCheck = await fetch(
-            `https://duckduckgo.com/ac/?q=${encodeURIComponent(searchbar.value)}`
+            `https://searx.be/autocomplete?q=${encodeURIComponent(searchbar.value)}`
         );
         if (!autoCompleteCheck.ok) return;
         const autocomplete = await autoCompleteCheck.json();
@@ -43,7 +43,7 @@ function loadURL() {
     if (shouldAutocomplete(page)) {
         document.querySelector(
             ".current"
-        ).src = `https://duckduckgo.com/?q=${encodeURIComponent(page)}`;
+        ).src = `https://searx.be/?q=${encodeURIComponent(page)}`;
     } else {
         document.querySelector(".current").src = page;
     }
